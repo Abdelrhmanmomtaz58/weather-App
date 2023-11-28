@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.momtaz.weatherapp.Adapters.HoulyAdapter
 import com.momtaz.weatherapp.Domains.Hourly
+import com.momtaz.weatherapp.Domains.Location
 import com.momtaz.weatherapp.R
 import com.momtaz.weatherapp.databinding.ActivityMainBinding
 
@@ -14,6 +15,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var recyclerView: RecyclerView
    lateinit var  houlyAdapter:RecyclerView.Adapter<HoulyAdapter.ViewHolder>
+   lateinit var city:String
+   val uli="http://api.weatherapi.com/v1/current.json?key=b3df61d0e86b4188889200654232611&q=$city&aqi=no"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +24,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
          initRecycleview()
         callback()
+        mackRequest()
+
+    }
+
+    private fun mackRequest() {
+       city = binding.search.text.toString()
+        binding.city.text=city
     }
 
     private fun callback() {
@@ -58,4 +68,5 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
 }
